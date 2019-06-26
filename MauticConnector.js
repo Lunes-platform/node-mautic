@@ -229,7 +229,7 @@ module.exports = class MauticConnector {
             createEmail: queryParameters => this._callApi({method: "POST", url: this._makeUrl("/emails/new"), body: JSON.stringify(queryParameters)}),
             editEmail: (method, queryParameters, emailId) => this._callApi({method: this._ensureMethodIsPutOrPatch(method), url: this._makeUrl("/emails/" + emailId + "/edit"), body: JSON.stringify(queryParameters)}),
             deleteEmail: emailId => this._callApi({method: "DELETE", url: this._makeUrl("/emails/" + emailId + "/delete")}),
-            sendEmailToContact: (emailId, contactId) => this._callApi({method: "POST", url: this._makeUrl("/emails/" + emailId + "/contact/" + contactId + "/send")}),
+            sendEmailToContact: (emailId, contactId, tokens) => this._callApi({method: "POST", url: this._makeUrl("/emails/" + emailId + "/contact/" + contactId + "/send"), body: tokens}),
             sendEmailToSegment: emailId => this._callApi({method: "POST", url: this._makeUrl("/emails/" + emailId + "/send")})
         };
 
